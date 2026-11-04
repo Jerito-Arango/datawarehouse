@@ -67,12 +67,3 @@ aws ec2 describe-instances --region us-east-2 --filters "Name=tag:proyecto,Value
 aws s3 ls | grep dw-user10
 ```
 Todas deben devolver vacío. `destroy` borra el bucket con sus datos.
-
-## Problemas frecuentes
-| Síntoma | Causa y solución |
-|---|---|
-| SSH se corta por inactividad | Añade a `~/.ssh/config`: `Host <ip>` con `ServerAliveInterval 30` |
-| No abre la interfaz de Airflow o SSH deja de responder | Tu IP pública cambió: actualiza `my_ip` en `terraform.tfvars` y repite `terraform apply` |
-| `COPY` falla con "role not associated to cluster" | El namespace de Redshift no tiene el rol. Terraform lo asocia en `redshift.tf`; si aun así ocurre: `aws redshift-serverless update-namespace --namespace-name dw-user10-ns --region us-east-2 --iam-roles <ARN del rol> --default-iam-role-arn <ARN del rol>` |
-| `terraform destroy` dice "Instance ... is already being deleted" | DocumentDB sigue borrándose en AWS. Espera unos minutos y repite `destroy` |
-| `python: command not found` en la EC2 | Falta `source ~/venv/bin/activate` |
