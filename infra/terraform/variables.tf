@@ -16,19 +16,6 @@ variable "my_ip" {
   description = "Tu IP pública con /32 (curl https://checkip.amazonaws.com)"
 }
 
-# Roles existentes (no se crean)
-variable "redshift_role_arn" {
-  type    = string
-  default = ""
-}
-variable "ec2_role_arn" {
-  type    = string
-  default = ""
-}
-variable "ec2_instance_profile" {
-  type    = string
-  default = ""
-}
 variable "ssh_public_key_path" {
   type    = string
   default = "~/.ssh/dw-user10.pub"
