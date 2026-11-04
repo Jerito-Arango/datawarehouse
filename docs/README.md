@@ -11,6 +11,8 @@
 | [airflow_aws.md](airflow_aws.md) | DAG en AWS, marcadores de lote y demo de fallo |
 | [cambios_redshift.md](cambios_redshift.md) | Cambios de dialecto para Redshift |
 
+Evidencias de ejecución: [evidencias/](evidencias/README.md)
+
 Infraestructura: [`infra/terraform/README.md`](../infra/terraform/README.md)
 
 ## Documentación original del pipeline local (profesor)
