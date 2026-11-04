@@ -10,7 +10,7 @@
 | MySQL | Contenedor local | RDS MySQL con contraseña en Secrets Manager | Gestionado, cifrado |
 | Infraestructura | Docker Compose | Terraform (22 recursos, banderas `enable_*`) | Reproducible, destruible, revisable |
 | dbt | dbt-duckdb | dbt-redshift 1.9.5 sobre dbt-core 1.9.11 | Mismos modelos con ajustes de dialecto |
-| Orquestador | Local | Airflow 2.11.2 en la misma EC2 (SQLite, `SequentialExecutor`) | Mínimo costo para la demo |
+| Orquestador | Local | Airflow 2.11.2 en la misma EC2  | Mínimo costo para la demo |
 
 ## Decisiones de diseño
 - **Marcador de finalización:** el manifest se escribe al final. Un lote sin manifest no está completo y no se carga.
