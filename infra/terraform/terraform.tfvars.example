@@ -1,0 +1,14 @@
+# Copia este archivo a terraform.tfvars (que NO se sube a Git) y ajusta los valores.
+
+# Tu IP pública con /32. Solo esta IP podrá entrar por SSH y a la interfaz de Airflow.
+# Averíguala con: curl -s https://checkip.amazonaws.com
+my_ip = "0.0.0.0/32"
+
+# true = crea el servicio; false = no lo crea (útil para ir por partes o ahorrar costo).
+enable_rds      = true
+enable_docdb    = true
+enable_redshift = true
+enable_ec2      = true
+
+# La contraseña de DocumentDB NO va aquí. Se pasa por variable de entorno antes del apply:
+#   export TF_VAR_docdb_password='...'
