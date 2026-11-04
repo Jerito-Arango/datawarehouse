@@ -24,4 +24,4 @@
 Ver `docs/cambios_redshift.md` (palabra reservada `raw` entre comillas, `convert_timezone` con timestamp, etc.).
 
 ## Dashboard (requisito 3.6)
-**No se implementó:** el profesor indicó que no se hiciera la parte de QuickSight, después de que se le documentaron los problemas de acceso (`ResourceNotFoundException` en la suscripción en tres regiones: us-east-2, us-east-1 y us-west-2). La capa de marts queda lista para consumirse desde cualquier herramienta de BI.
+**No se implementó:** el profesor indicó que no se hiciera la parte de QuickSight.
