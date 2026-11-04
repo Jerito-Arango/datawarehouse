@@ -1,6 +1,6 @@
 # Decisiones técnicas y diferencias frente al pipeline local
 
-| Tema | Local (profesor) | AWS (este proyecto) | Por qué |
+| Tema | Local (DE-DW original) | AWS (este trabajo) | Por qué |
 |---|---|---|---|
 | Almacén | DuckDB en archivo | Redshift Serverless | Servicio gestionado y sin servidores que administrar |
 | Zona raw | Archivos locales / DuckDB | CSV en S3 `raw/<fuente>/<entidad>/batch_id=N/` + `_manifest.json` | S3 desacopla extracción y carga; el manifest es el marcador de lote completo |
