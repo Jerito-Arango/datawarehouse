@@ -16,10 +16,9 @@ Precios de lista aproximados; confírmalos en la calculadora de AWS antes de cit
 ## Escenarios
 - **Siempre encendido (sin Redshift):** ~0,14 USD/hora, es decir ~100 USD/mes. Por eso la infraestructura no se deja corriendo.
 - **Una sesión de trabajo (~4 h, con ~20 min de Redshift activo):** del orden de **1,5 a 2 USD**.
-- **Después de `terraform destroy`:** 0 USD (verificado con consultas de la CLI filtradas por `dw-user10`, todas `[]`).
+- **Después de `terraform destroy`:** 0 USD 
 
 ## Cómo se controló el gasto
-- Cada servicio de pago tiene su bandera `enable_*` (por defecto `false`).
 - Tamaños mínimos: `db.t3.micro`, `db.t3.medium` (el mínimo de DocumentDB), 8 RPU (el mínimo de Redshift Serverless).
 - Sin Multi-AZ, sin snapshots finales, `force_destroy` en el bucket.
 - Todo se creó y destruyó con Terraform, con verificación posterior.
