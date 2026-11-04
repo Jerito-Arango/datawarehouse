@@ -11,7 +11,7 @@
 ## Credenciales
 - **RDS y Redshift:** `manage_master_user_password` / `manage_admin_password`: las contraseñas las genera y guarda AWS Secrets Manager; no existen en el código ni en el estado de Terraform.
 - **DocumentDB:** la contraseña va por `TF_VAR_docdb_password`, nunca en un archivo; `.env.aws` solo tiene nombres y ARNs, y `aws_env.sh` pide o consulta las contraseñas en tiempo de ejecución.
-- `.gitignore` excluye `.env.aws`, `terraform.tfvars`, estado y `.terraform/`. Antes de cada commit se buscó con `grep` patrones de claves.
+- `.gitignore` excluye `.env.aws`, `terraform.tfvars`, estado y `.terraform/`. 
 
 ## IAM (mínimo privilegio)
 - **Rol de Redshift:** solo `s3:GetObject` sobre el bucket del proyecto, más `ListBucket` y `GetBucketLocation`.
