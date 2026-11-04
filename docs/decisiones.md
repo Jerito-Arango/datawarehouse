@@ -21,7 +21,6 @@
 - **SCD2:** snapshots de dbt con estrategia `timestamp` sobre `updated_at`.
 
 ## Cambios de dialecto Redshift
-Ver `docs/cambios_redshift.md` (palabra reservada `raw` entre comillas, `convert_timezone` con timestamp, etc.).
-
+Ver `docs/cambios_redshift.md`.
 ## Dashboard (requisito 3.6)
 **No se implementó:** el profesor indicó que no se hiciera la parte de QuickSight.
