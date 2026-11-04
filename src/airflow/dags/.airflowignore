@@ -1,0 +1,3 @@
+# DAGs locales basados en DuckDB; en AWS los reemplaza ecommerce_pipeline.py (un solo DAG).
+extract_to_raw.py
+transform_warehouse.py

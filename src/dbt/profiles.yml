@@ -1,8 +1,14 @@
 ecommerce_dw:
-  target: local
+  target: redshift
   outputs:
-    local:
-      type: duckdb
-      path: /opt/warehouse/warehouse.duckdb
+    redshift:
+      type: redshift
+      host: "{{ env_var('REDSHIFT_HOST') }}"
+      port: 5439
+      user: "{{ env_var('REDSHIFT_USER', 'dwadmin') }}"
+      password: "{{ env_var('REDSHIFT_PASSWORD') }}"
+      dbname: "{{ env_var('REDSHIFT_DB', 'dw') }}"
       schema: intermediate
-      threads: 1
+      sslmode: require
+      threads: 4
+      connect_timeout: 30

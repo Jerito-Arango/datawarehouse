@@ -20,4 +20,4 @@ select
     sales.date_sk as fact_date_sk
 from expected
 inner join {{ ref('fct_sales') }} as sales using (sale_sk)
-where expected.date_sk is distinct from sales.date_sk
+where {{ is_distinct('expected.date_sk', 'sales.date_sk') }}

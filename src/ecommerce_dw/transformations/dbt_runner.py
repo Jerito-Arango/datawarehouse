@@ -1,19 +1,24 @@
-"""Ejecuta comandos de dbt desde tareas reutilizables de Airflow."""
+"""Ejecuta comandos de dbt (contra Redshift) desde tareas de Airflow.
 
-import fcntl
+Cambios frente a la versión local:
+- Ya no hay archivo DuckDB que proteger: se elimina el bloqueo con fcntl.
+  Redshift admite conexiones concurrentes; el orden lo da el DAG.
+- Las rutas salen de variables de entorno (DBT_EXECUTABLE, DBT_PROJECT) para no fijar /home/airflow.
+- La conexión usa REDSHIFT_HOST/DB/USER/PASSWORD, que lee src/dbt/profiles.yml.
+"""
+
 import logging
 import os
 import subprocess
 from pathlib import Path
 
-DBT_EXECUTABLE = "/home/airflow/dbt-venv/bin/dbt"
-DBT_PROJECT = Path("/opt/airflow/src/dbt")
-WAREHOUSE_PATH = Path(os.getenv("DUCKDB_PATH", "/opt/warehouse/warehouse.duckdb"))
+DBT_EXECUTABLE = os.getenv("DBT_EXECUTABLE", str(Path.home() / "dbt-venv" / "bin" / "dbt"))
+DBT_PROJECT = Path(os.getenv("DBT_PROJECT", str(Path.home() / "DE-DW" / "src" / "dbt")))
 LOGGER = logging.getLogger(__name__)
 
 
 def run_dbt(command, selector=None):
-    """Ejecuta dbt y serializa el acceso al archivo compartido de DuckDB."""
+    """Ejecuta un comando de dbt y falla la tarea si dbt devuelve error."""
     arguments = [
         DBT_EXECUTABLE,
         command,
@@ -22,17 +27,6 @@ def run_dbt(command, selector=None):
     ]
     if selector is not None:
         arguments.extend(["--select", selector])
-    if command != "deps":
-        arguments.extend(["--threads", "1"])
-
     LOGGER.info("Running dbt command: %s", " ".join(arguments))
-    if command == "deps":
-        subprocess.run(arguments, check=True)
-        return
-
-    with WAREHOUSE_PATH.with_suffix(".lock").open("a") as lock:
-        fcntl.flock(lock, fcntl.LOCK_EX)
-        try:
-            subprocess.run(arguments, check=True)
-        finally:
-            fcntl.flock(lock, fcntl.LOCK_UN)
+    # dbt escribe su salida en el log de la tarea; check=True convierte el código de error en excepción.
+    subprocess.run(arguments, check=True)

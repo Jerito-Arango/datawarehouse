@@ -1,0 +1,27 @@
+
+# AWS / Terraform: nunca al repositorio
+.env.aws
+*.tfstate
+*.tfstate.*
+*.tfvars
+!terraform.tfvars.example
+.terraform/
+*.pem
+
+# Sistema y temporales
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# dbt: artefactos generados
+src/dbt/target/
+src/dbt/dbt_packages/
+src/dbt/logs/
+
+# Entorno local del proyecto original (contiene contraseñas)
+.env
+docker/.env
+env_file
+warehouse/
