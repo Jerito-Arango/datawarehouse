@@ -7,6 +7,7 @@ cd "$(dirname "$0")/../.."
 # shellcheck disable=SC1091
 source scripts/aws/aws_env.sh
 export AIRFLOW_HOME="$HOME/airflow"
+export PATH="$HOME/airflow-venv/bin:$PATH"  # el scheduler lanza el comando `airflow` por nombre
 export AIRFLOW__CORE__DAGS_FOLDER="$PWD/src/airflow/dags"
 export AIRFLOW__CORE__LOAD_EXAMPLES=False
 export DBT_EXECUTABLE="$HOME/dbt-venv/bin/dbt" DBT_PROJECT="$PWD/src/dbt"
