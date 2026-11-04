@@ -1,5 +1,11 @@
 # Data warehouse local de comercio electrónico colombiano
 
+> **Migración a AWS (entrega del reto Data Warehouse).** Este repositorio incluye la versión local original y su migración a AWS: RDS MySQL y DocumentDB → S3 → Redshift Serverless → dbt, orquestado con Airflow en una EC2 y desplegado con Terraform.
+> Empieza por [docs/README.md](docs/README.md): despliegue, arquitectura, decisiones, seguridad, costos y [evidencias](docs/evidencias/README.md). La infraestructura está en [infra/terraform](infra/terraform/README.md).
+> La parte de QuickSight (3.6) no se hizo, por indicación del profesor.
+>
+> Lo que sigue describe el pipeline local original.
+
 PoC reproducible de ventas. Genera datos sintéticos en MySQL y MongoDB, los carga en DuckDB y construye una constelación de hechos con dbt. Airflow orquesta la extracción y las transformaciones; los scripts preparan y operan el entorno.
 
 Este README es el índice. Cada etapa tiene su guía en [docs/etapas/](docs/etapas/) con los comandos, el resultado esperado, las consultas para DBeaver o Compass y los archivos que intervienen.
